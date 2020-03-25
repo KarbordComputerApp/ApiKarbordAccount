@@ -1,0 +1,163 @@
+﻿@model ApiKarbordAccount.Models.Access
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Access</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.lockNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lockNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AddressApi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddressApi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fromDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fromDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.untilDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.untilDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ACC_Group)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ACC_Group)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.INV_Group)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.INV_Group)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FCT_Group)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FCT_Group)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AFI_Group)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AFI_Group)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AFI_Access)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AFI_Access)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CSH_Group)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CSH_Group)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MVL_Group)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MVL_Group)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PAY_Group)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PAY_Group)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ERJ_Group)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ERJ_Group)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.active)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

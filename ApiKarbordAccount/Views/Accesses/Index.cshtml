@@ -1,0 +1,136 @@
+﻿@model IEnumerable<ApiKarbordAccount.Models.Access>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.lockNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AddressApi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fromDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.untilDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ACC_Group)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.INV_Group)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FCT_Group)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AFI_Group)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AFI_Access)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CSH_Group)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MVL_Group)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PAY_Group)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ERJ_Group)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.active)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.lockNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AddressApi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fromDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.untilDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.userCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ACC_Group)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.INV_Group)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FCT_Group)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AFI_Group)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AFI_Access)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CSH_Group)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MVL_Group)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PAY_Group)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ERJ_Group)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.active)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
