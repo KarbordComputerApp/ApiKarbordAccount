@@ -22,6 +22,15 @@ namespace ApiKarbordAccount.Models
 
         public string AddressApi { get; set; }
 
+
+        public string SqlServerName { get; set; }
+
+        public string SqlUserName { get; set; }
+
+        public string SqlPassword { get; set; }
+
+
+
         [StringLength(10)]
         public string fromDate { get; set; }
 

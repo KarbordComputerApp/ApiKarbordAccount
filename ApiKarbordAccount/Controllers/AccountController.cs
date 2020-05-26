@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Description;
 using ApiKarbordAccount.Models;
 
 namespace ApiKarbordAccount.Controllers
@@ -12,6 +13,7 @@ namespace ApiKarbordAccount.Controllers
     public class AccountController : ApiController
     {
         Models.ModelAccount db = new ModelAccount();
+
         // GET: api/Account
         [Route("api/Account/{userName}/{password}")]
         public async Task<IHttpActionResult> GetWeb_Account(string userName, string password)
@@ -44,5 +46,23 @@ namespace ApiKarbordAccount.Controllers
                 throw;
             }
         }
+
+        
+        // Get: api/Account/InformationSql دریافت اطلاعات اس کیو ال  
+        [Route("api/Account/InformationSql/{userName}/{password}")]
+        public async Task<IHttpActionResult> GetInformationSql(string userName, string password)
+        {
+            try
+            {
+                var list = from p in db.Access where p.UserName == userName && p.Password == password select p;
+                return Ok(list);
+            }
+            catch (Exception)
+            {
+                return null;
+                throw;
+            }
+        }
+
     }
 }
