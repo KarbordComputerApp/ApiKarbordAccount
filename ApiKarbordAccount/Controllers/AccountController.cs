@@ -26,7 +26,7 @@ namespace ApiKarbordAccount.Controllers
                 char[] c = new char[count];
                 for (int i = 0; i < User.Length - 1; i++)
                 {
-                    temp = Int32.Parse(User[i]) / 1024;
+                    temp = Int32.Parse(User[i]) / 2;
                     c[i] = (Char)temp;
                 }
                 return new string(c);
