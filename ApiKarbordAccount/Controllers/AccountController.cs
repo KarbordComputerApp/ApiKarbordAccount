@@ -41,8 +41,8 @@ namespace ApiKarbordAccount.Controllers
         {
             try
             {
-                userName = UnEncript(userName);
-                password = UnEncript(password);
+                //userName = UnEncript(userName);
+               // password = UnEncript(password);
                 //var list = from p in db.Access where p.UserName == userName && p.Password == password select p;
                 var list = db.Access.First(c => c.UserName == userName && c.Password == password);
                 return Ok(list);
@@ -59,8 +59,8 @@ namespace ApiKarbordAccount.Controllers
         {
             try
             {
-                userName = UnEncript(userName);
-                password = UnEncript(password);
+                //userName = UnEncript(userName);
+               // password = UnEncript(password);
                 var list = from p in db.Access where p.UserName == userName && p.Password == password select p;
                 //var list = db.Access.First(c => c.UserName == userName && c.Password == password);
                 return Ok(list);
@@ -79,8 +79,8 @@ namespace ApiKarbordAccount.Controllers
         {
             try
             {
-                userName = UnEncript(userName);
-                password = UnEncript(password);
+                //userName = UnEncript(userName);
+                //password = UnEncript(password);
                 var list = from p in db.Access where p.UserName == userName && p.Password == password select p;
 
                 return Ok(list);
