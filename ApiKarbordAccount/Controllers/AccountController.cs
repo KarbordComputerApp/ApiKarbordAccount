@@ -39,19 +39,24 @@ namespace ApiKarbordAccount.Controllers
         [Route("api/Account/{userName}/{password}")]
         public async Task<IHttpActionResult> GetWeb_Account(string userName, string password)
         {
-            try
+            
+            //userName = UnEncript(userName);
+            // password = UnEncript(password);
+            //var list = from p in db.Access where p.UserName == userName && p.Password == password select p;
+
+            string sql = string.Format("select count(id) as count from Access where UserName = '{0}' and Password = '{1}' ",
+                                        userName, password);
+
+            int count = db.Database.SqlQuery<int>(sql).Single();
+
+            if (count > 0)
             {
-                //userName = UnEncript(userName);
-               // password = UnEncript(password);
-                //var list = from p in db.Access where p.UserName == userName && p.Password == password select p;
                 var list = db.Access.First(c => c.UserName == userName && c.Password == password);
                 return Ok(list);
             }
-            catch (Exception)
-            {
-                return NotFound();
-                throw;
-            }
+            else
+               return Ok(0); 
+
         }
 
         [Route("api/ProgramList/{userName}/{password}")]
@@ -60,7 +65,7 @@ namespace ApiKarbordAccount.Controllers
             try
             {
                 //userName = UnEncript(userName);
-               // password = UnEncript(password);
+                // password = UnEncript(password);
                 var list = from p in db.Access where p.UserName == userName && p.Password == password select p;
                 //var list = db.Access.First(c => c.UserName == userName && c.Password == password);
                 return Ok(list);
@@ -72,7 +77,7 @@ namespace ApiKarbordAccount.Controllers
             }
         }
 
-        
+
         // Get: api/Account/InformationSql دریافت اطلاعات اس کیو ال  
         [Route("api/Account/InformationSql/{userName}/{password}")]
         public async Task<IHttpActionResult> GetInformationSql(string userName, string password)
