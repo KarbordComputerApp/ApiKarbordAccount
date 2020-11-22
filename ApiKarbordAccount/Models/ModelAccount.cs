@@ -14,6 +14,8 @@ namespace ApiKarbordAccount.Models
 
         public virtual DbSet<Access> Access { get; set; }
 
+        public virtual DbSet<Log> Log { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
         }

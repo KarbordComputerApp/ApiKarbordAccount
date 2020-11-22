@@ -39,7 +39,7 @@ namespace ApiKarbordAccount.Controllers
         [Route("api/Account/{userName}/{password}")]
         public async Task<IHttpActionResult> GetWeb_Account(string userName, string password)
         {
-            
+
             //userName = UnEncript(userName);
             // password = UnEncript(password);
             //var list = from p in db.Access where p.UserName == userName && p.Password == password select p;
@@ -55,7 +55,7 @@ namespace ApiKarbordAccount.Controllers
                 return Ok(list);
             }
             else
-               return Ok(0); 
+                return Ok(0);
 
         }
 
@@ -79,15 +79,36 @@ namespace ApiKarbordAccount.Controllers
 
 
         // Get: api/Account/InformationSql دریافت اطلاعات اس کیو ال  
-        [Route("api/Account/InformationSql/{userName}/{password}")]
-        public async Task<IHttpActionResult> GetInformationSql(string userName, string password)
+        [Route("api/Account/InformationSql/{userName}/{password}/{userKarbord}/{ace}/{group}/{sal}/{serialnumber}/{act}")]
+        public async Task<IHttpActionResult> GetInformationSql(string userName, string password, string userKarbord, string ace, string group, string sal, long serialnumber, int act)
         {
             try
             {
-                //userName = UnEncript(userName);
-                //password = UnEncript(password);
-                var list = from p in db.Access where p.UserName == userName && p.Password == password select p;
 
+                if (act > 0)
+                {
+                    string sql = String.Format(@"EXEC[dbo].[Web_InsertLog]
+                                                              @userName = {0},
+                                                              @password = {1},
+		                                                      @ace = {2},
+		                                                      @group = {3},
+		                                                      @sal = {4},
+		                                                      @userKarbord = {5},
+		                                                      @act = {6} ",
+                                                              userName,
+                                                              password,
+                                                              ace,
+                                                              group,
+                                                              sal,
+                                                              userKarbord,
+                                                              act);
+                    int value = db.Database.SqlQuery<int>(sql).Single();
+                    if (value > 0)
+                    {
+                        await db.SaveChangesAsync();
+                    }
+                }
+                var list = from p in db.Access where p.UserName == userName && p.Password == password select p;
                 return Ok(list);
             }
             catch (Exception)
