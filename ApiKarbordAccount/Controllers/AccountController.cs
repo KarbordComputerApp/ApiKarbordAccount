@@ -79,8 +79,8 @@ namespace ApiKarbordAccount.Controllers
 
 
         // Get: api/Account/InformationSql دریافت اطلاعات اس کیو ال  
-        [Route("api/Account/InformationSql/{userName}/{password}/{userKarbord}/{ace}/{group}/{sal}/{serialnumber}/{act}")]
-        public async Task<IHttpActionResult> GetInformationSql(string userName, string password, string userKarbord, string ace, string group, string sal, long serialnumber, int act)
+        [Route("api/Account/InformationSql/{userName}/{password}/{userKarbord}/{ace}/{group}/{sal}/{serialnumber}/{modecode}/{act}")]
+        public async Task<IHttpActionResult> GetInformationSql(string userName, string password, string userKarbord, string ace, string group, string sal, long serialnumber,string modecode, int act)
         {
             try
             {
@@ -88,19 +88,23 @@ namespace ApiKarbordAccount.Controllers
                 if (act > 0)
                 {
                     string sql = String.Format(@"EXEC[dbo].[Web_InsertLog]
-                                                              @userName = {0},
-                                                              @password = {1},
+                                                              @userName = '{0}',
+                                                              @password = '{1}',
 		                                                      @ace = {2},
 		                                                      @group = {3},
 		                                                      @sal = {4},
 		                                                      @userKarbord = {5},
-		                                                      @act = {6} ",
+		                                                      @serialNumber = {6},
+		                                                      @modeCode = {7},
+		                                                      @act = {8} ",
                                                               userName,
                                                               password,
                                                               ace,
                                                               group,
                                                               sal,
                                                               userKarbord,
+                                                              serialnumber,
+                                                              modecode,
                                                               act);
                     int value = db.Database.SqlQuery<int>(sql).Single();
                     if (value > 0)
