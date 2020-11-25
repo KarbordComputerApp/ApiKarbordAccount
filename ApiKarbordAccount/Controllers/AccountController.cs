@@ -84,7 +84,49 @@ namespace ApiKarbordAccount.Controllers
         {
             try
             {
+               /* if (act > 0)
+                {
+                    string sql = String.Format(@"EXEC[dbo].[Web_InsertLog]
+                                                              @userName = '{0}',
+                                                              @password = '{1}',
+		                                                      @ace = {2},
+		                                                      @group = {3},
+		                                                      @sal = {4},
+		                                                      @userKarbord = {5},
+		                                                      @serialNumber = {6},
+		                                                      @modeCode = {7},
+		                                                      @act = {8} ",
+                                                              userName,
+                                                              password,
+                                                              ace,
+                                                              group,
+                                                              sal,
+                                                              userKarbord,
+                                                              serialnumber,
+                                                              modecode,
+                                                              act);
+                    int value = db.Database.SqlQuery<int>(sql).Single();
+                    if (value > 0)
+                    {
+                        await db.SaveChangesAsync();
+                    }
+                }*/
+                var list = from p in db.Access where p.UserName == userName && p.Password == password select p;
+                return Ok(list);
+            }
+            catch (Exception)
+            {
+                return null;
+                throw;
+            }
+        }
 
+        // Get: api/Account/Log 
+        [Route("api/Account/Log/{userName}/{password}/{userKarbord}/{ace}/{group}/{sal}/{serialnumber}/{modecode}/{act}")]
+        public async Task<IHttpActionResult> GetLog(string userName, string password, string userKarbord, string ace, string group, string sal, long serialnumber, string modecode, int act)
+        {
+            try
+            {
                 if (act > 0)
                 {
                     string sql = String.Format(@"EXEC[dbo].[Web_InsertLog]
@@ -112,8 +154,7 @@ namespace ApiKarbordAccount.Controllers
                         await db.SaveChangesAsync();
                     }
                 }
-                var list = from p in db.Access where p.UserName == userName && p.Password == password select p;
-                return Ok(list);
+                return Ok(1);
             }
             catch (Exception)
             {
