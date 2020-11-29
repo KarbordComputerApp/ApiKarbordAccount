@@ -79,8 +79,8 @@ namespace ApiKarbordAccount.Controllers
 
 
         // Get: api/Account/InformationSql دریافت اطلاعات اس کیو ال  
-        [Route("api/Account/InformationSql/{userName}/{password}/{userKarbord}/{ace}/{group}/{sal}/{serialnumber}/{modecode}/{act}")]
-        public async Task<IHttpActionResult> GetInformationSql(string userName, string password, string userKarbord, string ace, string group, string sal, long serialnumber, string modecode, int act)
+        [Route("api/Account/InformationSql/{userName}/{password}/{userKarbord}/{ace}/{group}/{sal}/{serialnumber}/{modecode}/{act}/{bandNo}")]
+        public async Task<IHttpActionResult> GetInformationSql(string userName, string password, string userKarbord, string ace, string group, string sal, long serialnumber, string modecode, int act , int bandNo)
         {
             try
             {
@@ -96,7 +96,8 @@ namespace ApiKarbordAccount.Controllers
 		                                                      @serialNumber = {6},
 		                                                      @modeCode = {7},
 		                                                      @act = {8},
-                                                              @flag = 0",
+                                                              @flag = 0,
+                                                              @bandno = {9}",
                                                               userName,
                                                               password,
                                                               ace,
@@ -105,7 +106,8 @@ namespace ApiKarbordAccount.Controllers
                                                               userKarbord,
                                                               serialnumber,
                                                               modecode,
-                                                              act);
+                                                              act,
+                                                              bandNo);
                     int value = db.Database.SqlQuery<int>(sql).Single();
                     if (value > 0)
                     {
@@ -123,8 +125,8 @@ namespace ApiKarbordAccount.Controllers
         }
 
         // Get: api/Account/Log 
-        [Route("api/Account/Log/{userName}/{password}/{userKarbord}/{ace}/{group}/{sal}/{serialnumber}/{modecode}/{act}/{flag}")]
-        public async Task<IHttpActionResult> GetLog(string userName, string password, string userKarbord, string ace, string group, string sal, long serialnumber, string modecode, int act, byte flag)
+        [Route("api/Account/Log/{userName}/{password}/{userKarbord}/{ace}/{group}/{sal}/{serialnumber}/{modecode}/{act}/{flag}/{bandNo}")]
+        public async Task<IHttpActionResult> GetLog(string userName, string password, string userKarbord, string ace, string group, string sal, long serialnumber, string modecode, int act, byte flag,int bandNo)
         {
             try
             {
@@ -140,7 +142,8 @@ namespace ApiKarbordAccount.Controllers
 		                                                      @serialNumber = {6},
 		                                                      @modeCode = {7},
 		                                                      @act = {8},
-                                                              @flag = {9} ",
+                                                              @flag = {9},
+                                                              @bandno = {10} ",
                                                               userName,
                                                               password,
                                                               ace,
@@ -150,7 +153,8 @@ namespace ApiKarbordAccount.Controllers
                                                               serialnumber,
                                                               modecode,
                                                               act,
-                                                              flag);
+                                                              flag,
+                                                              bandNo);
                     int value = db.Database.SqlQuery<int>(sql).Single();
                     if (value > 0)
                     {
