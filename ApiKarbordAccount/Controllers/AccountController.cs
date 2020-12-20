@@ -114,8 +114,8 @@ namespace ApiKarbordAccount.Controllers
                         await db.SaveChangesAsync();
                     }
                 }
-                var list = from p in db.Access where p.UserName == userName && p.Password == password select p;
-                return Ok(list);
+                var data = from p in db.Access where p.UserName == userName && p.Password == password select p;
+                return Ok(data);
             }
             catch (Exception)
             {
