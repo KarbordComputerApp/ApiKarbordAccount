@@ -16,6 +16,7 @@ namespace ApiKarbordAccount.Controllers
 
 
 
+
         public static string UnEncript(string value)
         {
             int temp;
@@ -168,6 +169,31 @@ namespace ApiKarbordAccount.Controllers
                 return null;
                 throw;
             }
+        }
+
+
+
+
+        public class Message
+        {
+            public long id { get; set; }
+
+            public string lockNumber { get; set; }
+
+            public string expireDate { get; set; }
+
+            public string message { get; set; }
+
+            public bool? active { get; set; }
+
+        }
+        // GET: api/Account/Messages
+        [Route("api/Account/Messages/{lockNumber}")]
+        public async Task<IHttpActionResult> GetWeb_Messages(string lockNumber)
+        {
+            string sql = string.Format("select * from Message where active = 1 and lockNumber = '{0}' or lockNumber is null ", lockNumber);
+            var list  = db.Database.SqlQuery<Message>(sql).ToList();
+            return Ok(list);
         }
 
     }
