@@ -196,5 +196,34 @@ namespace ApiKarbordAccount.Controllers
             return Ok(list);
         }
 
+
+
+
+
+
+        public class OutBox
+        {
+            public long id { get; set; }
+
+            public string lockNumber { get; set; }
+
+            public string date_send { get; set; }
+
+            public string title { get; set; }
+
+            public string body { get; set; }
+
+            public string link { get; set; }
+
+        }
+        // GET: api/Account/OutBox
+        [Route("api/Account/OutBox/{lockNumber}")]
+        public async Task<IHttpActionResult> GetWeb_Outbox(string lockNumber)
+        {
+            string sql = string.Format("select * from Outbox where lockNumber = '{0}'", lockNumber);
+            var list = db.Database.SqlQuery<OutBox>(sql).ToList();
+            return Ok(list);
+        }
+
     }
 }
