@@ -191,7 +191,7 @@ namespace ApiKarbordAccount.Controllers
         [Route("api/Account/Messages/{lockNumber}")]
         public async Task<IHttpActionResult> GetWeb_Messages(string lockNumber)
         {
-            string sql = string.Format("select * from Message where active = 1 and lockNumber = '{0}' or lockNumber is null ", lockNumber);
+            string sql = string.Format("select * from Message where active = 1 and lockNumber = '{0}' or lockNumber is null or lockNumber = '' ", lockNumber);
             var list  = db.Database.SqlQuery<Message>(sql).ToList();
             return Ok(list);
         }
@@ -213,7 +213,7 @@ namespace ApiKarbordAccount.Controllers
 
             public string body { get; set; }
 
-            public string link { get; set; }
+            public string namefile { get; set; }
 
         }
         // GET: api/Account/OutBox
