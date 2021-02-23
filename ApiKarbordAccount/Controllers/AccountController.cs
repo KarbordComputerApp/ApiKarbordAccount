@@ -36,6 +36,8 @@ namespace ApiKarbordAccount.Controllers
                 return null;
         }
 
+
+
         // GET: api/Account
         [Route("api/Account/{userName}/{password}")]
         public async Task<IHttpActionResult> GetWeb_Account(string userName, string password)
@@ -52,7 +54,12 @@ namespace ApiKarbordAccount.Controllers
 
             if (count > 0)
             {
-                var list = db.Access.First(c => c.UserName == userName && c.Password == password);
+                sql = string.Format(@"SELECT Id,lockNumber,CompanyName,UserName,Password,AddressApi,fromDate,toDate,userCount,'*******' as SqlServerName , '*******' as SqlUserName , '*******' as SqlPassword,
+                                             AFI1_Group, AFI1_Access, AFI8_Group, AFI8_Access, ERJ_Group, ERJ_Access, active, ProgName
+                                      FROM   Access
+                                      where  UserName = '{0}' and Password = '{1}' ",
+                                             userName, password);
+                var list = db.Database.SqlQuery<Access>(sql).Single(); // db.Access.First(c => c.UserName == userName && c.Password == password);
                 return Ok(list);
             }
             else
@@ -81,7 +88,7 @@ namespace ApiKarbordAccount.Controllers
 
         // Get: api/Account/InformationSql دریافت اطلاعات اس کیو ال  
         [Route("api/Account/InformationSql/{userName}/{password}/{userKarbord}/{ace}/{group}/{sal}/{serialnumber}/{modecode}/{act}/{bandNo}")]
-        public async Task<IHttpActionResult> GetInformationSql(string userName, string password, string userKarbord, string ace, string group, string sal, long serialnumber, string modecode, int act , int bandNo)
+        public async Task<IHttpActionResult> GetInformationSql(string userName, string password, string userKarbord, string ace, string group, string sal, long serialnumber, string modecode, int act, int bandNo)
         {
             try
             {
@@ -127,7 +134,7 @@ namespace ApiKarbordAccount.Controllers
 
         // Get: api/Account/Log 
         [Route("api/Account/Log/{userName}/{password}/{userKarbord}/{ace}/{group}/{sal}/{serialnumber}/{modecode}/{act}/{flag}/{bandNo}")]
-        public async Task<IHttpActionResult> GetLog(string userName, string password, string userKarbord, string ace, string group, string sal, long serialnumber, string modecode, int act, byte flag,int bandNo)
+        public async Task<IHttpActionResult> GetLog(string userName, string password, string userKarbord, string ace, string group, string sal, long serialnumber, string modecode, int act, byte flag, int bandNo)
         {
             try
             {
@@ -192,7 +199,7 @@ namespace ApiKarbordAccount.Controllers
         public async Task<IHttpActionResult> GetWeb_Messages(string lockNumber)
         {
             string sql = string.Format("select * from Message where active = 1 and lockNumber = '{0}' or lockNumber is null or lockNumber = '' ", lockNumber);
-            var list  = db.Database.SqlQuery<Message>(sql).ToList();
+            var list = db.Database.SqlQuery<Message>(sql).ToList();
             return Ok(list);
         }
 
