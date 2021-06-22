@@ -179,9 +179,7 @@ namespace ApiKarbordAccount.Controllers
         }
 
 
-
-
-        public class Message
+        public partial class Message
         {
             public long id { get; set; }
 
@@ -189,19 +187,23 @@ namespace ApiKarbordAccount.Controllers
 
             public string expireDate { get; set; }
 
-            public string message { get; set; }
+            public string title { get; set; }
+
+            public string body { get; set; }
 
             public bool? active { get; set; }
-
         }
+
         // GET: api/Account/Messages
         [Route("api/Account/Messages/{lockNumber}")]
         public async Task<IHttpActionResult> GetWeb_Messages(string lockNumber)
         {
-            string sql = string.Format("select * from Message where active = 1 and lockNumber = '{0}' or lockNumber is null or lockNumber = '' ", lockNumber);
-            var list = db.Database.SqlQuery<Message>(sql).ToList();
+            string sql = string.Format("SELECT * FROM [dbo].[Message] where active = 1 and (lockNumber is null  or lockNumber = '{0}' or lockNumber = '')", lockNumber);
+            var list = db.Database.SqlQuery<Message>(sql).ToList(); // db.Access.First(c => c.UserName == userName && c.Password == password);
             return Ok(list);
         }
+
+
 
 
 
