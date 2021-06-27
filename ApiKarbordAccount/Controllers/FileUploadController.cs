@@ -23,6 +23,11 @@ namespace ApiKarbordAccount.Controllers
             {
                 Directory.CreateDirectory(folder);
             }
+
+            //var Atch = System.Web.HttpContext.Current.Request.Files["Atch"];
+            //var req = HttpContext.Current.Request;
+            //var file = req.Files[req.Files.Keys.Get(0)];
+
             var httpRequest = HttpContext.Current.Request.Files[0];
             var name = httpRequest.FileName.Split('.');
             string tempName = name[0] + "-" + DateTime.Now.ToString("yyMMddHHmmss") + "." + name[1];

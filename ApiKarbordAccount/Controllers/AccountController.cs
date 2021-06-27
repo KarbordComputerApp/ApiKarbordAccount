@@ -210,13 +210,15 @@ namespace ApiKarbordAccount.Controllers
 
 
 
-        public class OutBox
+        public class Box
         {
             public long id { get; set; }
 
+            public byte mode { get; set; }
+
             public string lockNumber { get; set; }
 
-            public string date_send { get; set; }
+            public string date { get; set; }
 
             public string title { get; set; }
 
@@ -225,14 +227,74 @@ namespace ApiKarbordAccount.Controllers
             public string namefile { get; set; }
 
         }
-        // GET: api/Account/OutBox
-        [Route("api/Account/OutBox/{lockNumber}")]
-        public async Task<IHttpActionResult> GetWeb_Outbox(string lockNumber)
+
+        public class BoxObject
         {
-            string sql = string.Format("select * from Outbox where lockNumber = '{0}'", lockNumber);
-            var list = db.Database.SqlQuery<OutBox>(sql).ToList();
+            public string LockNumber { get; set; }
+
+            public byte Mode { get; set; }
+
+            public string UserCode { get; set; }
+
+        }
+
+
+        // GET: api/Account/Box
+        [Route("api/Account/Box/")]
+        public async Task<IHttpActionResult> PostWeb_Box(BoxObject BoxObject)
+        {
+            string sql = string.Format("select * from Box where lockNumber = '{0}' ", BoxObject.LockNumber);
+            var list = db.Database.SqlQuery<Box>(sql).ToList();
             return Ok(list);
         }
 
+
+
+        public class InsertBoxObject
+        {
+
+            public byte Mode { get; set; }
+
+            public string LockNumber { get; set; }
+
+            public string Date { get; set; }
+
+            public string Title { get; set; }
+
+            public string Body { get; set; }
+
+            public string NameFile { get; set; }
+
+            public string UserCode { get; set; }
+
+        }
+
+
+        // Post: api/Account/Box
+        [Route("api/Account/InsertBox/")]
+        public async Task<IHttpActionResult> PostWeb_InsertBox(InsertBoxObject InsertBoxObject)
+        {
+            string sql = string.Format("INSERT INTO Box (mode,locknumber,date,title,body,namefile)VALUES({0},'{1}','{2}','{3}','{4}','{5}')",
+                                      InsertBoxObject.Mode,
+                                      InsertBoxObject.LockNumber,
+                                      InsertBoxObject.Date,
+                                      InsertBoxObject.Title,
+                                      InsertBoxObject.Body,
+                                      InsertBoxObject.NameFile);
+            var list = db.Database.SqlQuery<Box>(sql).ToList();
+            await db.SaveChangesAsync();
+            return Ok(list);
+        }
+
+
+        // get: api/Account/DeleteBox
+        [Route("api/Account/DeleteBox/{lockNumber}/{id}")]
+        public async Task<IHttpActionResult> GetWeb_DeleteBox(string lockNumber, long id)
+        {
+            string sql = string.Format("DELETE FROM Box WHERE id = {0} and lockNumber = '{1}' and  mode = 1 select 0", id, lockNumber);
+            var list = db.Database.SqlQuery<int>(sql).ToList();
+            await db.SaveChangesAsync();
+            return Ok(list);
+        }
     }
 }
