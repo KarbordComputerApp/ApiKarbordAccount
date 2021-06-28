@@ -243,7 +243,11 @@ namespace ApiKarbordAccount.Controllers
         [Route("api/Account/Box/")]
         public async Task<IHttpActionResult> PostWeb_Box(BoxObject BoxObject)
         {
-            string sql = string.Format("select * from Box where lockNumber = '{0}' ", BoxObject.LockNumber);
+            string sql = string.Format(@"declare @mode tinyint = {0} 
+                                         select* from Box where lockNumber = '{1}' and 
+                                                                ((@mode = 0 and (mode = 1 or mode = 2)) or mode = @mode)
+                                         order by date , id", BoxObject.Mode, BoxObject.LockNumber);
+
             var list = db.Database.SqlQuery<Box>(sql).ToList();
             return Ok(list);
         }
@@ -291,7 +295,7 @@ namespace ApiKarbordAccount.Controllers
         [Route("api/Account/DeleteBox/{lockNumber}/{id}")]
         public async Task<IHttpActionResult> GetWeb_DeleteBox(string lockNumber, long id)
         {
-            string sql = string.Format("DELETE FROM Box WHERE id = {0} and lockNumber = '{1}' and  mode = 1 select 0", id, lockNumber);
+            string sql = string.Format("update box set mode = 3 WHERE id = {0} and lockNumber = '{1}' and  mode = 1 select 0", id, lockNumber);
             var list = db.Database.SqlQuery<int>(sql).ToList();
             await db.SaveChangesAsync();
             return Ok(list);
