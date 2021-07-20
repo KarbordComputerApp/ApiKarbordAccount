@@ -12,7 +12,7 @@ namespace ApiKarbordAccount.Controllers
 {
     public class AccountController : ApiController
     {
-        Models.ModelAccount db = new ModelAccount();
+        ModelAccount db = new ModelAccount();
 
 
 

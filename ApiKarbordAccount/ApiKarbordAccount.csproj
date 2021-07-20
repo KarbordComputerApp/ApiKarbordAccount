@@ -202,12 +202,17 @@
     <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
+    <Compile Include="Controllers\TicketPoshtibaniController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Log.cs" />
     <Compile Include="Models\Access.cs" />
     <Compile Include="Models\ModelAccount.cs" />
+    <Compile Include="Models\ModelTiket.cs" />
+    <Compile Include="Models\Web_DocAttach.cs" />
+    <Compile Include="Models\Web_TicketStatus.cs" />
+    <Compile Include="Models\Web_ErjDocXK.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
