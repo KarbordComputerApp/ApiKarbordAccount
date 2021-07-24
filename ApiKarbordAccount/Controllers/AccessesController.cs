@@ -14,7 +14,7 @@ namespace ApiKarbordAccount.Controllers
     {
         private ModelAccount db = new ModelAccount();
 
-        // GET: Accesses
+        // GET: Accesses 
         public ActionResult Index()
         {
             return View(db.Access.ToList());
