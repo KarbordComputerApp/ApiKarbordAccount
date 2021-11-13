@@ -67,6 +67,37 @@ namespace ApiKarbordAccount.Controllers
 
         }
 
+
+        // GET: api/Account
+        [Route("api/Account/{lockNumber}")]
+        public async Task<IHttpActionResult> GetWeb_Account(string lockNumber)
+        {
+
+            //userName = UnEncript(userName);
+            // password = UnEncript(password);
+            //var list = from p in db.Access where p.UserName == userName && p.Password == password select p;
+
+            string sql = string.Format("select count(id) as count from Access where lockNumber = '{0}'",
+                                        lockNumber);
+
+            int count = db.Database.SqlQuery<int>(sql).Single();
+
+            if (count > 0)
+            {
+                sql = string.Format(@"SELECT Id,lockNumber,CompanyName,UserName,Password,AddressApi,fromDate,toDate,userCount,'*******' as SqlServerName , '*******' as SqlUserName , '*******' as SqlPassword,
+                                             AFI1_Group, AFI1_Access, AFI8_Group, AFI8_Access, ERJ_Group, ERJ_Access, active, ProgName
+                                      FROM   Access
+                                      where  lockNumber = '{0}'",
+                                             lockNumber);
+                var list = db.Database.SqlQuery<Access>(sql).Single(); // db.Access.First(c => c.UserName == userName && c.Password == password);
+                return Ok(list);
+            }
+            else
+                return Ok(0);
+
+        }
+
+
         [Route("api/ProgramList/{userName}/{password}")]
         public async Task<IHttpActionResult> GetWeb_ProgramList(string userName, string password)
         {
