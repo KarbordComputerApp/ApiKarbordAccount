@@ -55,7 +55,7 @@ namespace ApiKarbordAccount.Controllers
             if (count > 0)
             {
                 sql = string.Format(@"SELECT Id,lockNumber,CompanyName,UserName,Password,AddressApi,fromDate,toDate,userCount,'*******' as SqlServerName , '*******' as SqlUserName , '*******' as SqlPassword,
-                                             AFI1_Group, AFI1_Access, AFI8_Group, AFI8_Access, ERJ_Group, ERJ_Access, active, ProgName
+                                             AFI1_Group, AFI1_Access, AFI8_Group, AFI8_Access, ERJ_Group, ERJ_Access, active, ProgName,multilang
                                       FROM   Access
                                       where  UserName = '{0}' and Password = '{1}' ",
                                              userName, password);
@@ -85,7 +85,7 @@ namespace ApiKarbordAccount.Controllers
             if (count > 0)
             {
                 sql = string.Format(@"SELECT Id,lockNumber,CompanyName,UserName,Password,AddressApi,fromDate,toDate,userCount,'*******' as SqlServerName , '*******' as SqlUserName , '*******' as SqlPassword,
-                                             AFI1_Group, AFI1_Access, AFI8_Group, AFI8_Access, ERJ_Group, ERJ_Access, active, ProgName
+                                             AFI1_Group, AFI1_Access, AFI8_Group, AFI8_Access, ERJ_Group, ERJ_Access, active, ProgName,multilang
                                       FROM   Access
                                       where  lockNumber = '{0}'",
                                              lockNumber);

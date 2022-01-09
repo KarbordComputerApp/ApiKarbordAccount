@@ -52,5 +52,7 @@ namespace ApiKarbordAccount.Models
         public string ERJ_Access { get; set; }
 
         public bool? active { get; set; }
+
+        public bool? multilang { get; set; }
     }
 }
