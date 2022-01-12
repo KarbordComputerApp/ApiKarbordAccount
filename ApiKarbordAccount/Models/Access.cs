@@ -29,13 +29,13 @@ namespace ApiKarbordAccount.Models
 
         public string SqlPassword { get; set; }
 
-
-
-        [StringLength(10)]
         public string fromDate { get; set; }
 
-        [StringLength(10)]
         public string toDate { get; set; }
+
+        public string ProgName { get; set; }
+
+        public string Fct_or_Inv { get; set; }
 
         public byte? userCount { get; set; }
 
@@ -54,5 +54,7 @@ namespace ApiKarbordAccount.Models
         public bool? active { get; set; }
 
         public bool? multilang { get; set; }
+
+        public int? logoutmin { get; set; }
     }
 }
