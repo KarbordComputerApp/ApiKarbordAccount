@@ -55,7 +55,7 @@ namespace ApiKarbordAccount.Controllers
             if (count > 0)
             {
                 sql = string.Format(@"SELECT Id,lockNumber,CompanyName,UserName,Password,AddressApi,fromDate,toDate,userCount,'*******' as SqlServerName , '*******' as SqlUserName , '*******' as SqlPassword,
-                                             AFI1_Group, AFI1_Access, AFI8_Group, AFI8_Access, ERJ_Group, ERJ_Access, active, ProgName,multilang,logoutmin,ProgName,Fct_or_Inv
+                                             AFI1_Group, AFI1_Access, AFI8_Group, AFI8_Access, ERJ_Group, ERJ_Access, active, ProgName,multilang,logoutmin,ProgName,Fct_or_Inv,AddressApiPos
                                       FROM   Access
                                       where  UserName = '{0}' and Password = '{1}' ",
                                              userName, password);
@@ -85,7 +85,7 @@ namespace ApiKarbordAccount.Controllers
             if (count > 0)
             {
                 sql = string.Format(@"SELECT Id,lockNumber,CompanyName,UserName,Password,AddressApi,fromDate,toDate,userCount,'*******' as SqlServerName , '*******' as SqlUserName , '*******' as SqlPassword,
-                                             AFI1_Group, AFI1_Access, AFI8_Group, AFI8_Access, ERJ_Group, ERJ_Access, active, ProgName,multilang,logoutmin,ProgName,Fct_or_Inv
+                                             AFI1_Group, AFI1_Access, AFI8_Group, AFI8_Access, ERJ_Group, ERJ_Access, active, ProgName,multilang,logoutmin,ProgName,Fct_or_Inv,AddressApiPos
                                       FROM   Access
                                       where  lockNumber = '{0}'",
                                              lockNumber);
@@ -150,8 +150,9 @@ namespace ApiKarbordAccount.Controllers
                     int value = db.Database.SqlQuery<int>(sql).Single();
                     if (value > 0)
                     {
-                        await db.SaveChangesAsync();
+                       await db.SaveChangesAsync();
                     }
+
                 }
                 var data = from p in db.Access where p.UserName == userName && p.Password == password select p;
                 return Ok(data);

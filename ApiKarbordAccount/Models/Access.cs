@@ -56,5 +56,7 @@ namespace ApiKarbordAccount.Models
         public bool? multilang { get; set; }
 
         public int? logoutmin { get; set; }
+
+        public string AddressApiPos { get; set; }
     }
 }
