@@ -58,5 +58,18 @@ namespace ApiKarbordAccount.Models
         public int? logoutmin { get; set; }
 
         public string AddressApiPos { get; set; }
+
+        public bool? IsApp { get; set; }
+
+        public bool? IsWeb { get; set; }
+
+        public bool? IsApi { get; set; }
+
+        public string WhereKala { get; set; }
+
+        public string WhereCust { get; set; }
+
+        public string WhereAcc { get; set; }
+
     }
 }

@@ -55,7 +55,8 @@ namespace ApiKarbordAccount.Controllers
             if (count > 0)
             {
                 sql = string.Format(@"SELECT Id,lockNumber,CompanyName,UserName,Password,AddressApi,fromDate,toDate,userCount,'*******' as SqlServerName , '*******' as SqlUserName , '*******' as SqlPassword,
-                                             AFI1_Group, AFI1_Access, AFI8_Group, AFI8_Access, ERJ_Group, ERJ_Access, active, ProgName,multilang,logoutmin,ProgName,Fct_or_Inv,AddressApiPos
+                                             AFI1_Group, AFI1_Access, AFI8_Group, AFI8_Access, ERJ_Group, ERJ_Access, active, ProgName,multilang,logoutmin,ProgName,Fct_or_Inv,AddressApiPos,
+                                             IsApp,IsWeb,IsApi,WhereKala,WhereCust,WhereAcc
                                       FROM   Access
                                       where  UserName = '{0}' and Password = '{1}' ",
                                              userName, password);
@@ -85,7 +86,8 @@ namespace ApiKarbordAccount.Controllers
             if (count > 0)
             {
                 sql = string.Format(@"SELECT Id,lockNumber,CompanyName,UserName,Password,AddressApi,fromDate,toDate,userCount,'*******' as SqlServerName , '*******' as SqlUserName , '*******' as SqlPassword,
-                                             AFI1_Group, AFI1_Access, AFI8_Group, AFI8_Access, ERJ_Group, ERJ_Access, active, ProgName,multilang,logoutmin,ProgName,Fct_or_Inv,AddressApiPos
+                                             AFI1_Group, AFI1_Access, AFI8_Group, AFI8_Access, ERJ_Group, ERJ_Access, active, ProgName,multilang,logoutmin,ProgName,Fct_or_Inv,AddressApiPos,
+                                             IsApp,IsWeb,IsApi,WhereKala,WhereCust,WhereAcc
                                       FROM   Access
                                       where  lockNumber = '{0}'",
                                              lockNumber);
