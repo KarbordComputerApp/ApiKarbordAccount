@@ -69,6 +69,8 @@ namespace ApiKarbordAccount.Models
 
         public string WhereCust { get; set; }
 
+        public string WhereThvl { get; set; }
+
         public string WhereAcc { get; set; }
 
     }
