@@ -100,6 +100,38 @@ namespace ApiKarbordAccount.Controllers
         }
 
 
+
+        // GET: api/AccountData
+        [Route("api/AccountData/{LockNumber}/{Param}")]
+        public async Task<IHttpActionResult> GetWeb_AccountData(string LockNumber, string Param)
+        {
+            if (Param == "GetDataBy_Hrh")
+            {
+                string sql = string.Format("select count(id) as count from Access where lockNumber = '{0}'",
+                                            LockNumber);
+                int count = db.Database.SqlQuery<int>(sql).Single();
+                if (count > 0)
+                {
+                    sql = string.Format(@"  SELECT  isnull(CompanyName,'') + '~' +  isnull(UserName,'')+ '~' +  isnull(Password,'')+ '~' + isnull(AddressApi,'')+ '~' +
+                                                    isnull(fromDate,'')+ '~' + isnull(toDate,'')+ '~' +cast(isnull(userCount,0) as nvarchar(10))+ '~' +
+                                                    isnull(AFI1_Group,'')+ '~' + isnull(AFI1_Access,'')+ '~' + isnull(AFI8_Group,'') + '~' + isnull(AFI8_Access,'')+ '~' + 
+		                                            isnull(ERJ_Group,'')+ '~' + isnull(ERJ_Access,'')+ '~' + '~' +  isnull(ProgName,'')+ '~' +isnull(Fct_or_Inv,'')+ '~' +
+		                                            isnull(AddressApiPos,'')+ '~' + isnull(WhereKala,'')+ '~' +isnull(WhereCust,'')+ '~' +isnull(WhereThvl,'')+ '~' + isnull(WhereAcc ,'')
+                                            FROM   Access
+                                            where lockNumber = '{0}'", LockNumber);
+                    string list = db.Database.SqlQuery<string>(sql).Single();
+                    return Ok(list);
+                }
+                else
+                    return Ok("Not Find");
+            }
+            else
+                return Ok("Access Denied");
+
+        }
+
+
+
         [Route("api/ProgramList/{userName}/{password}")]
         public async Task<IHttpActionResult> GetWeb_ProgramList(string userName, string password)
         {
