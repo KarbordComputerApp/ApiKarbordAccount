@@ -73,7 +73,6 @@ namespace ApiKarbordAccount.Models
 
         public string WhereAcc { get; set; }
 
-        public bool? UseVstr { get; set; }
-
+       public int? SettingApp { get; set; }
     }
 }
