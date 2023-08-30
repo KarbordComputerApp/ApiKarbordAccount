@@ -10,15 +10,15 @@ using ApiKarbordAccount.Models;
 
 namespace ApiKarbordAccount.Controllers
 {
-    public class AccessesController : Controller
+    public class AccessesController : Controller 
     {
-        private ModelAccount db = new ModelAccount();
-
+        private ModelAccount db = new ModelAccount(); 
+              
         // GET: Accesses 
-        public ActionResult Index()
+        public ActionResult Index() 
         {
-            return View(db.Access.ToList());
-        }
+            return View(db.Access.ToList());     
+        }    
 
         // GET: Accesses/Details/5
         public ActionResult Details(int? id)

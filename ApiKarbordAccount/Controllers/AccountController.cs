@@ -157,7 +157,8 @@ namespace ApiKarbordAccount.Controllers
         {
             try
             {
-                if (act > 0)
+                var data = from p in db.Access where p.UserName == userName && p.Password == password select p;
+                /*if (act > 0)
                 {
                     string sql = String.Format(@"EXEC[dbo].[Web_InsertLog]
                                                               @userName = '{0}',
@@ -186,10 +187,9 @@ namespace ApiKarbordAccount.Controllers
                     {
                        await db.SaveChangesAsync();
                     }
-
-                }
-                var data = from p in db.Access where p.UserName == userName && p.Password == password select p;
-                return Ok(data);
+                     
+                }*/
+                return Ok(data); 
             }
             catch (Exception)
             {
