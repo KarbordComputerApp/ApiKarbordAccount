@@ -152,44 +152,22 @@ namespace ApiKarbordAccount.Controllers
 
 
         // Get: api/Account/InformationSql دریافت اطلاعات اس کیو ال  
-        [Route("api/Account/InformationSql/{userName}/{password}/{userKarbord}/{ace}/{group}/{sal}/{serialnumber}/{modecode}/{act}/{bandNo}")]
-        public async Task<IHttpActionResult> GetInformationSql(string userName, string password, string userKarbord, string ace, string group, string sal, long serialnumber, string modecode, int act, int bandNo)
+        [Route("api/Account/InformationSql/{userName}/{password}")]
+        public async Task<IHttpActionResult> GetInformationSql(string userName, string password)
         {
             try
             {
-                var data = from p in db.Access where p.UserName == userName && p.Password == password select p;
-                /*if (act > 0)
+                if (userName == "null" && password == "null")
                 {
-                    string sql = String.Format(@"EXEC[dbo].[Web_InsertLog]
-                                                              @userName = '{0}',
-                                                              @password = '{1}',
-		                                                      @ace = {2},
-		                                                      @group = {3},
-		                                                      @sal = {4},
-		                                                      @userKarbord = {5},
-		                                                      @serialNumber = {6},
-		                                                      @modeCode = {7},
-		                                                      @act = {8},
-                                                              @flag = 0,
-                                                              @bandno = {9}",
-                                                              userName,
-                                                              password,
-                                                              ace,
-                                                              group,
-                                                              sal,
-                                                              userKarbord,
-                                                              serialnumber,
-                                                              modecode,
-                                                              act,
-                                                              bandNo);
-                    int value = db.Database.SqlQuery<int>(sql).Single();
-                    if (value > 0)
-                    {
-                       await db.SaveChangesAsync();
-                    }
-                     
-                }*/
-                return Ok(data); 
+                    var data = from p in db.Access where p.active == true select p;
+                    return Ok(data);
+                }
+                else
+                {
+                    var data = from p in db.Access where p.UserName == userName && p.Password == password select p;
+                    return Ok(data);
+                }
+              
             }
             catch (Exception)
             {
