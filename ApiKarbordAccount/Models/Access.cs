@@ -22,7 +22,6 @@ namespace ApiKarbordAccount.Models
 
         public string AddressApi { get; set; }
 
-
         public string SqlServerName { get; set; }
 
         public string SqlUserName { get; set; }
@@ -74,5 +73,7 @@ namespace ApiKarbordAccount.Models
         public string WhereAcc { get; set; }
 
        public int? SettingApp { get; set; }
+
+       public string ActiveSamane { get; set; }
     }
 }
