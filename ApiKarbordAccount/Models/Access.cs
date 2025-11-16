@@ -75,5 +75,10 @@ namespace ApiKarbordAccount.Models
        public int? SettingApp { get; set; }
 
        public string ActiveSamane { get; set; }
+
+       public string SamaneGroup { get; set; }
+
+       public byte? SamaneProg { get; set; }
+
     }
 }

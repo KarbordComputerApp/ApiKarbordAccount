@@ -56,7 +56,7 @@ namespace ApiKarbordAccount.Controllers
             {
                 sql = string.Format(@"SELECT Id,lockNumber,CompanyName,UserName,Password,AddressApi,fromDate,toDate,userCount,'*******' as SqlServerName , '*******' as SqlUserName , '*******' as SqlPassword,
                                              AFI1_Group, AFI1_Access, AFI8_Group, AFI8_Access, ERJ_Group, ERJ_Access, active, ProgName,multilang,logoutmin,ProgName,Fct_or_Inv,AddressApiPos,
-                                             IsApp,IsWeb,IsApi,WhereKala,WhereCust,WhereThvl,WhereAcc,SettingApp,ActiveSamane
+                                             IsApp,IsWeb,IsApi,WhereKala,WhereCust,WhereThvl,WhereAcc,SettingApp,ActiveSamane,SamaneGroup,SamaneProg
                                       FROM   Access
                                       where  UserName = '{0}' and Password = '{1}' ",
                                              userName, password);
@@ -87,7 +87,7 @@ namespace ApiKarbordAccount.Controllers
             {
                 sql = string.Format(@"SELECT Id,lockNumber,CompanyName,UserName,Password,AddressApi,fromDate,toDate,userCount,'*******' as SqlServerName , '*******' as SqlUserName , '*******' as SqlPassword,
                                              AFI1_Group, AFI1_Access, AFI8_Group, AFI8_Access, ERJ_Group, ERJ_Access, active, ProgName,multilang,logoutmin,ProgName,Fct_or_Inv,AddressApiPos,
-                                             IsApp,IsWeb,IsApi,WhereKala,WhereCust,WhereThvl,WhereAcc,SettingApp,ActiveSamane
+                                             IsApp,IsWeb,IsApi,WhereKala,WhereCust,WhereThvl,WhereAcc,SettingApp,ActiveSamane,SamaneGroup,SamaneProg
                                       FROM   Access
                                       where  lockNumber = '{0}'",
                                              lockNumber);
@@ -112,12 +112,12 @@ namespace ApiKarbordAccount.Controllers
                 int count = db.Database.SqlQuery<int>(sql).Single();
                 if (count > 0)
                 {
-                    sql = string.Format(@"  SELECT  isnull(CompanyName,'') + '~' +  isnull(UserName,'')+ '~' +  isnull(Password,'')+ '~' + isnull(AddressApi,'')+ '~' +
+                    sql = string.Format(@"  SELECT  isnull(CompanyName,'')+ '~' + isnull(UserName,'')+ '~' +  isnull(Password,'')+ '~' + isnull(AddressApi,'')+ '~' +
                                                     isnull(fromDate,'')+ '~' + isnull(toDate,'')+ '~' +cast(isnull(userCount,0) as nvarchar(10))+ '~' +
                                                     isnull(AFI1_Group,'')+ '~' + isnull(AFI1_Access,'')+ '~' + isnull(AFI8_Group,'') + '~' + isnull(AFI8_Access,'')+ '~' + 
 		                                            isnull(ERJ_Group,'')+ '~' + isnull(ERJ_Access,'')+ '~' + '~' +  isnull(ProgName,'')+ '~' +isnull(Fct_or_Inv,'')+ '~' +
 		                                            isnull(AddressApiPos,'')+ '~' + isnull(WhereKala,'')+ '~' +isnull(WhereCust,'')+ '~' +isnull(WhereThvl,'')+ '~' + isnull(WhereAcc ,'') + '~' + isnull(SettingApp ,'') + '~' + 
-                                                    isnull(ActiveSamane ,'') 
+                                                    isnull(ActiveSamane ,'')+ '~' + isnull(SamaneGroup ,'')+ '~' +isnull(SamaneProg ,'')
                                             FROM   Access
                                             where lockNumber = '{0}'", LockNumber);
                     string list = db.Database.SqlQuery<string>(sql).Single();
